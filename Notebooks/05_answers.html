@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1671.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">**A: 1**</p>
+<p class="p1">Current, the Big Mountain is charging 81$ for an adult weekend ticket. Our random forest model suggests that our current facilities and resort conditions might support a price of 95.88$. Although this model has a mean absolute error of 10.36, there is still possible room for supporting higher ticket prices.</p>
+<p class="p2"><br></p>
+<p class="p1">We also considered possible scenarios of some changes in our facilities, with the assumption that we will have 350,000 customers visiting and each person will purchase five ticket:</p>
+<p class="p1">1).Permanently closing down up to 10 of the least used runs. This doesn't impact any other resort statistics. This cause of possible drops in our seasonal revenue accordingly:</p>
+<p class="p1">decrease in revenue<span class="Apple-converted-space">      </span>run closing num</p>
+<p class="p1"><span class="Apple-converted-space">       </span>0 <span class="Apple-converted-space">                        </span>1</p>
+<p class="p1"><span class="Apple-converted-space">  </span>304,348<span class="Apple-converted-space">                        </span>2</p>
+<p class="p1"><span class="Apple-converted-space">  </span>481,884<span class="Apple-converted-space">                        </span>3</p>
+<p class="p1"><span class="Apple-converted-space">  </span>481,884<span class="Apple-converted-space">                        </span>4</p>
+<p class="p1"><span class="Apple-converted-space">  </span>481,884<span class="Apple-converted-space">                        </span>5</p>
+<p class="p1"><span class="Apple-converted-space"> </span>1,293,478 <span class="Apple-converted-space">                      </span>6</p>
+<p class="p1"><span class="Apple-converted-space"> </span>1,293,478 <span class="Apple-converted-space">                      </span>7</p>
+<p class="p1"><span class="Apple-converted-space"> </span>1,293,478 <span class="Apple-converted-space">                      </span>8</p>
+<p class="p1"><span class="Apple-converted-space"> </span>2,333,333 <span class="Apple-converted-space">                      </span>9</p>
+<p class="p1"><span class="Apple-converted-space"> </span>2,333,333 <span class="Apple-converted-space">                      </span>10</p>
+<p class="p2"><span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space"> </span>Our prediction suggest that closing one run will not hurt the ticket price.</p>
+<p class="p2"><br></p>
+<p class="p1">2).Increase the vertical drop by adding a run to a point 150 feet lower down but requiring the installation of an additional chair lift to bring skiers back up, without additional snow making coverage.This scenario increases support for ticket price by $1.61. Over the season, this could be expected to amount to $281,5217. The cost of an additional chair lift is $1540,000, so this scenario will help to increase the seasonal revenue to 1275217$(No considaration of other additional cost).</p>
+<p class="p2"><br></p>
+<p class="p1">3).Same as 2), but adding 2 acres of snow making cover.This scenario will create the same result as 2),so additional snow making cover will not improve the revenue.</p>
+<p class="p2"><br></p>
+<p class="p1">4).Increase the longest run by 0.2 mile to boast 3.5 miles length, requiring an additional snow making coverage of 4 acres. Our model shows that this will do nothing to our ticket price.</p>
+<p class="p2"><br></p>
+<p class="p1">To sum up, it seems that closing one current run, and increase the vertical drop by adding a new run to a point 150 feet with an additional chair lift is our best choice.</p>
+<p class="p2"><br></p>
+<p class="p1">In the future, we could also examine the impact of quards numbers to the ticket price to see if this will generate major influence of our total revenue.</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">**A: 2**</p>
+<p class="p1">Our model has some limitations. Firstly, we are using pricing information from other resorts to train our model. Since there is no guarantee that other resorts are making correct market prices, our model cannot guarantee that the result is optimized in the market.Secondly, it won't be sure that the total number of vistors and ticket purchasing number of each of them will be the same as our assumptions if we make some changes in our facilities.<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1">To fully understand the potential revenue change, we need to estimate the cost of a run (personnell, maintainance, electricity, etc.).</p>
+<p class="p2"><br></p>
+<p class="p1">Another thing worth noticing is that our price is already among the highest in the state, we might need additional data in the Monata state to check other possible factors of price. A possible choice would be a statewise market survey.</p>
+<p class="p2"><br></p>
+<p class="p1">If this model will be further used, we can call the following codes</p>
+<p class="p2"><br></p>
+<p class="p1">###</p>
+<p class="p1">ticket_increase = predict_increase(features, deltas)</p>
+<p class="p2"><br></p>
+<p class="p1">revenue_incrase = avg_purchase * expected_vistors * ticket_increase</p>
+<p class="p1">###</p>
+<p class="p1">with "features" being a list of facilities facing change, and "deltas" being the change in each facility according. (Make sure their order matches). The avg_purchase is the number of tickets each visitor will by, and expected_vistors is the total number of vistors. The variable ticket_increase will show the possible increase of ticket price, and revenue_increase shows the possible increase in revenue.</p>
+<p class="p2"><br></p>
+<p class="p1">As,an example, if we increase the run by one and vertical drop by 150 feet, with one additional chair, we need to call the following codes:</p>
+<p class="p1">ticket_increase = predict_increase(['Runs', 'vertical_drop', 'total_chairs'], [1, 150, 1])</p>
+<p class="p2"><br></p>
+<p class="p1">revenue_increase = avg_purchase * expected_visitors * ticket2_increase</p>
+</body>
+</html>
